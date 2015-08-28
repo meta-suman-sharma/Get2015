@@ -16,13 +16,10 @@ public class BinaryTree {
 		//Inserting node in binary tree
 		if (node == null) {
 			node = new Node(data);
-			System.out.println("data placed");
 		} else {
 			if (data <= node.nodeValue) {
-				System.out.println("left");
 				node.left = insert(node.left, data);
 			} else {
-				System.out.println("right");
 				node.right = insert(node.right, data);
 			}
 		}
@@ -86,14 +83,11 @@ public class BinaryTree {
 		//private function for inserting image binary tree
 		if (node == null) {
 			node = new Node(data);
-			System.out.println("Image data placed");
 		} else {
 			if (data <= node.nodeValue) {
-				System.out.println("Image right");
 				node.right = insertImage(node.right, data);
 
 			} else {
-				System.out.println("Image left");
 				node.left = insertImage(node.left, data);
 			}
 		}
