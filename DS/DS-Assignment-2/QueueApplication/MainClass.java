@@ -38,12 +38,6 @@ public class MainClass {
 
 				college.displayCollegelist();
 				collegeChoosen = sc.nextInt();
-				if (collegeChoosen != 1 || collegeChoosen != 2
-						|| collegeChoosen != 3 || collegeChoosen != 4
-						|| collegeChoosen != 5) {
-					System.out.print("Wrong Input");
-					return;
-				}
 				status = college.allotSeat(studentName, collegeChoosen - 1);
 				if (college.noOfallotedSeat != 10 && status == 0) {
 					System.out.println(studentName
@@ -57,6 +51,7 @@ public class MainClass {
 			} catch (Exception ex) {
 
 				System.out.print("College not available");
+				return;
 			}
 		}
 
