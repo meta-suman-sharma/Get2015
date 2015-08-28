@@ -33,7 +33,7 @@ public class MainClass {
 			try {
 				String studentName = student.getRear(i);
 
-				System.out.println(studentName
+				System.out.println("\n"+studentName
 						+ " choose college for councelling ");
 
 				college.displayCollegelist();
@@ -50,7 +50,7 @@ public class MainClass {
 				i++;
 			} catch (Exception ex) {
 
-				System.out.print("College not available");
+				System.out.println("College not available");
 				return;
 			}
 		}
