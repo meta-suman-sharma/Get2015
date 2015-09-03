@@ -10,8 +10,8 @@ public class ConcordanceMainClass {
 
 	public static void main(String[] args) {
 
-		Concordance concordance = new Concordance();
-		HashMap<Character, Integer> hashMap = new HashMap<Character, Integer>();
+	Concordance concordance = new Concordance();
+		HashMap<Character, String> hashMap = new HashMap<Character, String>();
 
 		System.out.print("Enter a String : ");
 
@@ -22,12 +22,13 @@ public class ConcordanceMainClass {
 			String concordanceString = bufferRead.readLine();
 			
 			//To count concordance
-			for (int i = 0; i < concordanceString.length(); i++) {
+			for (int i = 0; i < concordanceString.length();i++) {
 				if (concordanceString.charAt(i) != ' ') {
 					hashMap.put(concordanceString.charAt(i), concordance
-							.countLetter(concordanceString,
+							.position(concordanceString,
 									concordanceString.charAt(i)));
 				}
+				
 			}
 			
 			//Print occurrence of each character in String
