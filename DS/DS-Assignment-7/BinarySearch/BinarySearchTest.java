@@ -42,18 +42,6 @@ public class BinarySearchTest {
 		int array[] = {};
 		int expected =-1;
 		int result = new BinarySearch(0).leftOccuranceByBinarySearch( 4, 0, array.length-1); //call binary search method
-		//System.out.println(" "+result);
 		assertEquals(expected, result);
 	}
-	
-	@Test//positive test case
-	public void binarySearchtestNegativeArray() {
-		int array[] = {-8,-7,-6,-5,-5,-5,2,8,45};
-		int expected = 3;
-		binarySearch.addInArray(array);
-		int result = binarySearch.leftOccuranceByBinarySearch( -5, 0, array.length-1); //call binary search method
-		//System.out.println(" "+result);
-		assertEquals(expected, result);	
-	}
-
 }
