@@ -7,6 +7,8 @@ public class MainClass {
 	public static void main(String[] args) {
 		SortedLinkList sortedLinkList = new SortedLinkList();
 		Scanner scanner = new Scanner(System.in);
+		int index = 0;
+
 		while (true) {
 
 			try {
@@ -14,21 +16,21 @@ public class MainClass {
 				System.out.println("\n1. Insert in linklist"
 						+ "\n2. Display linklist" + "\n3. exit"
 						+ "\nEnter your choice : ");
-				int choice = scanner.nextInt();
+				String choice = scanner.next();
 				switch (choice) {
-				case 1:
+				case "1":
 					// Insert in linked list
 					System.out.print("Enter a value : ");
 					int item = scanner.nextInt();
-					sortedLinkList.insertInToSortedLinkList(item);
+					sortedLinkList.insertInToSortedLinkList(index, item);
 					break;
 
-				case 2:
+				case "2":
 					// Display linked list
 					sortedLinkList.displayList();
 					break;
 
-				case 3:
+				case "3":
 					System.exit(0);
 
 				default:
@@ -41,7 +43,6 @@ public class MainClass {
 				System.exit(0);
 			}
 		}
-
 	}
 
 }
