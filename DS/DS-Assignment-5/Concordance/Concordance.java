@@ -2,15 +2,15 @@ package Concordance;
 
 public class Concordance {
 
-	int countLetter(String string, char characterOfString) {
+	String position(String string, char characterOfString) {
 		//Function for counting occurrence of character in string
-		int count = 0;
+		String position = "";
 		for (int i = 0; i < string.length(); i++) {
 
 			if (characterOfString == string.charAt(i)) {
-				count++;
+				position=position+i+" ";
 			}
 		}
-		return count;
+		return position;
 	}
 }
