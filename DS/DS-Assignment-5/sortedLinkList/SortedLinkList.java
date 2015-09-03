@@ -7,22 +7,14 @@ public class SortedLinkList {
 	// using linkedList collection for storing values in sorted order
 	LinkedList<Integer> linkedList = new LinkedList<Integer>();
 
-	public void insertInToSortedLinkList(int item) {
+	public void insertInToSortedLinkList(int index, int item) {
 		// Insert element in sorted order
-		int index = 0;
-		if (linkedList.isEmpty()) {
+		if (index == linkedList.size()) {
 			linkedList.add(item);
+		} else if ((int) linkedList.get(index) < item
+				&& (index + 1) <= linkedList.size()) {
+			insertInToSortedLinkList(index + 1, item);
 		} else {
-			java.util.Iterator<Integer> iterator = linkedList.iterator();
-			while (iterator.hasNext()) {
-				int data = iterator.next();
-				if (data > item) {
-					break;
-				} else {
-					index++;
-					continue;
-				}
-			}
 			linkedList.add(index, item);
 		}
 	}
@@ -36,6 +28,7 @@ public class SortedLinkList {
 			int data = iterator.next();
 			System.out.print("->" + data);
 		}
+		System.out.println("\n");
 	}
 
 }
