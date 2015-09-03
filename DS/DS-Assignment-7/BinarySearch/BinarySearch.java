@@ -23,8 +23,18 @@ public class BinarySearch {
 
 			if (binaryArray[mid] == elementSearching) {
 				index = mid;
-				leftOccuranceByBinarySearch(elementSearching, startingIndex,
-						mid - 1);
+		        //finding most left  occurred searched element by recursion
+			//	leftOccuranceByBinarySearch(elementSearching, startingIndex,mid - 1);
+			//finding most left  occurred searched element by Loop 
+			while(binaryArray[index-1]==elementSearching  )
+				{
+					index--;
+					if(index==0)
+					{
+						break;
+					}
+					
+				}
 
 			} else if (binaryArray[mid] < elementSearching)
 
