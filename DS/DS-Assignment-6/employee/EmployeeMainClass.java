@@ -24,10 +24,19 @@ public class EmployeeMainClass {
 					//case to insert employee data
 					System.out.println("Enter employee ID : ");
 					String employeeId = scanner.next();
+					
+					for (int i = 0; i < employeeList.size(); i++) {
+						if(employeeList.get(i).getEmployeeId().equals(employeeId))
+						{
+							System.out.println("Employee with id '"+employeeId+"' already present\n");
+							continue;
+						}
+					}					
 					System.out.println("Enter employee name : ");
 					String employeeName = scanner.next();
 					System.out.println("Enter employee address : ");
 					String employeeAddress = scanner.next();
+					
 					employeeList.add(new Employee(employeeId, employeeName, employeeAddress));
 					break;
 
