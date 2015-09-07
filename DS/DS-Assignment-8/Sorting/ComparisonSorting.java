@@ -6,7 +6,6 @@ public class ComparisonSorting extends Sorting {
 
 	// class having two comparison method bubble sorting and quick sorting
 	int size = 0;
-	private static ArrayList<Integer> arrayList = new ArrayList<Integer>();
 
 	public ArrayList<Integer> sort(ArrayList<Integer> arrayList) {
 
@@ -15,12 +14,49 @@ public class ComparisonSorting extends Sorting {
 
 		if (size <= 10)
 			return bubbleSort(arrayList);
-		else {
-			System.out.println(" go quickSort");
-			ComparisonSorting.arrayList = arrayList;
-			quickSort(0, arrayList.lastIndexOf(arrayList));
-			return arrayList;
+		else {	
+			return quickSort(arrayList, 0, size-1);
 		}
+	}
+
+	public ArrayList<Integer> quickSort(ArrayList<Integer> arrayList, int lb,
+			int ub) {
+		int partitionIndex = partition(arrayList, lb, ub);
+
+		if (lb < partitionIndex - 1) {
+			// Recursively call Quick sort to sort left part of the array
+			quickSort(arrayList, lb, partitionIndex - 1);
+		}
+
+		if (ub > partitionIndex) {
+			// Recursively call Quick sort to sort right part of the array
+			quickSort(arrayList, partitionIndex+1, ub);
+		}
+		return arrayList;
+	}
+
+	private int partition(ArrayList<Integer> arrayList, int initialIndex,
+			int lastIndex) {
+		//Method to sort partitions
+		int pivotIndex = initialIndex;
+		int storeIndex = pivotIndex + 1;
+
+		for (int i = pivotIndex + 1; i <= lastIndex; i++) {
+			if (arrayList.get(i) < arrayList.get(pivotIndex)) {
+				// swap element at position i and storeIndex
+				Integer t = arrayList.get(i);
+				arrayList.set(i, arrayList.get(storeIndex));
+				arrayList.set(storeIndex, t);
+				storeIndex++;
+			}
+		}
+		//swapping
+		Integer i = arrayList.get(pivotIndex);
+		arrayList.set(pivotIndex, arrayList.get(storeIndex - 1));
+		arrayList.set(storeIndex - 1, i);
+		int partitionIndex = storeIndex - 1;
+		return partitionIndex;
+
 	}
 
 	private ArrayList<Integer> bubbleSort(ArrayList<Integer> arrayList) {
@@ -40,38 +76,4 @@ public class ComparisonSorting extends Sorting {
 		return arrayList;
 	}
 
-	private void quickSort(int lowerBound, int upperBound) {
-
-		// get the pivot element
-		int pivot = partition(lowerBound, upperBound);
-		// call the method quick sort the first half
-		if (lowerBound < upperBound) {
-			quickSort(lowerBound, pivot - 1);
-		}
-		// call the method quick sort second half
-		else if (upperBound > pivot) {
-			quickSort(pivot + 1, upperBound);
-		}
-	}
-
-	int partition(int left, int right) {
-		int pivot = left;
-		int storeIndex = pivot + 1;
-
-		for (int i = pivot + 1; i <= right; i++) {
-			// check which element greater at position i and pivot
-			if (arrayList.get(i) < arrayList.get(pivot)) {
-				// swap element at position i and storeIndex
-				Integer t = arrayList.get(i);
-				arrayList.set(i, arrayList.get(storeIndex));
-				arrayList.set(storeIndex, t);
-				storeIndex++;
-			}
-		}
-		// swap element at position p and storeIndex-1
-		Integer i = arrayList.get(pivot);
-		arrayList.set(pivot, arrayList.get(storeIndex - 1));
-		arrayList.set(storeIndex - 1, i);
-		return pivot;
-	}
 }
