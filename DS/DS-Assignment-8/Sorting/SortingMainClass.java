@@ -12,7 +12,7 @@ public class SortingMainClass {
 		ArrayList<Integer> arrayList = new ArrayList<Integer>();
 
 		while (true) {
-			// try {
+			try {
 			
 			System.out.println("\n***Menu***\n1. Insert Elements"
 					+ "\n2. comparison sorting" + "\n3. linear sorting"
@@ -56,9 +56,9 @@ public class SortingMainClass {
 				System.out.println("Invalid input");
 				break;
 			}
-			// } catch (Exception e) {
-			// System.out.println(e);
-			// }
+			} catch (Exception e) {
+			  System.out.println(e);
+			}
 		}
 	}
 }
