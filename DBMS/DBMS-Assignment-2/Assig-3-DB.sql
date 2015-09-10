@@ -1,8 +1,10 @@
+/* Assume an eCommerce application, where there are 
+Categories and products under those categories*/
 CREATE DATABASE eCommerceApplication;
 
 USE eCommerceApplication;
 
-
+/* Create table category*/
 CREATE TABLE Category(
   Category_id VARCHAR(100),
   Category_name VARCHAR(100),
@@ -10,6 +12,7 @@ CREATE TABLE Category(
   PRIMARY KEY(Category_id)
 );
 
+/* Create table Products*/
 CREATE TABLE Products(
   Product_id VARCHAR(100),
   Product_name VARCHAR(100),
@@ -18,11 +21,12 @@ CREATE TABLE Products(
   FOREIGN KEY(Category_id) REFERENCES Category(Category_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-
+/*Inserting the Top category*/
 INSERT INTO Category (Category_id,Category_name) VALUES('101','MOBILE & TABLETS');
 INSERT INTO Category (Category_id,Category_name) VALUES('102','COMPUTERS');
 INSERT INTO Category (Category_id,Category_name) VALUES('103','HOME APPLIANCES');
 
+/*Inserting the sub category*/
 INSERT INTO Category VALUES('104','MOBILE','101');
 INSERT INTO Category VALUES('105','TABLETS','101');
 INSERT INTO Category VALUES('106','ACCESSORIES','101');
@@ -38,7 +42,7 @@ INSERT INTO Category VALUES('112','TVs','103');
 INSERT INTO Category VALUES('113','AIR CONDITIONERS','103');
 INSERT INTO Category VALUES('114','WASHING MACHINES','103');
 
-
+/*Inserting the products*/
 INSERT INTO Products VALUES('201','SMART PHONE', '104');
 INSERT INTO Products VALUES('202','FEATURED PHONE', '104');
 
@@ -60,30 +64,29 @@ INSERT INTO Products VALUES('213','FULL AUTOMATIC TOP LOAD', '114');
 INSERT INTO Products VALUES('214','FULL AUTOMATIC FRONT LOAD', '114');
 INSERT INTO Products VALUES('215','SEMI AUTOMATIC', '114');
 
+/*display all the categories along with its Parent category*/
 SELECT c1.Category_id,c1.Category_name,
 IFNULL(c2.Category_name,NULL)
 FROM Category c1
 LEFT JOIN Category c2
 ON c1.Parent_category = c2.Category_id;
 
-
+/*display all the categories order by its Parent category*/
 SELECT c1.Category_id,c1.Category_name,
 IFNULL(c2.Category_name,NULL)
 FROM Category c1
 LEFT JOIN Category c2
 ON c1.Parent_category = c2.Category_id ORDER BY c2.Category_name ASC;
 
+/*If category is top category then it should 
+display “Top Category” in Parent category*/
 SELECT c1.Category_id,c1.Category_name,
 IFNULL(c2.Category_name,'TOP CATEGORY')
 FROM Category c1
 LEFT JOIN Category c2
 ON c1.Parent_category = c2.Category_id;
 
+/* Rewrite above SQL query to display only Top Categories.*/    
 SELECT Category_id,Category_name
 FROM Category 
 WHERE Parent_category IS NULL;
-
-
-
-
-
