@@ -5,9 +5,9 @@ INSERT INTO member VALUES('m1','SUMAN','GOPAL PURA','JAIPUR','F');
 INSERT INTO member VALUES('m2','NIDHI','GANDHI NAGAR','KARAULI','F');
 INSERT INTO member VALUES('m3','RICHA','GOPAL PURA','SIKER','F');
 INSERT INTO member VALUES('m4','CHETALI','SITAPURA','UDAIPUR','F');
-INSERT INTO member VALUES('m5','NEHA','LAKSHMI MANDIR','AJMER','F');
+INSERT INTO member VALUES('m5','NEHA','LAKSHMI MANDIR','AJMER','S');
 INSERT INTO member VALUES('m6','ANJI','JUHU','MUMBAI','F');
-INSERT INTO member VALUES('m7','MANISH','PRATAP NAGAR','JAIPUR','M');
+INSERT INTO member VALUES('m7','MANISH','PRATAP NAGAR','JAIPUR','S');
 
 /*Inserting values in table books*/
 INSERT INTO books VALUES(1234,'JAVA','2005-06-20',23.5,'NOT ISSUED');
@@ -17,13 +17,24 @@ INSERT INTO books VALUES(4237,'J2EE','2005-06-20',20.5,'NOT ISSUED');
 INSERT INTO books VALUES(5238,'DS','2005-06-20',23.5,'NOT SSUED');
 INSERT INTO books VALUES(61239,'DBMS','2005-06-20',40.5,'NOT ISSUED');
 
-/*Inserting values in table book_issue*/
+/*Inserting values in table book_issue */
+/*Inserting mannualy*/
+/*
 INSERT INTO book_issue VALUES (NOW(),1234,'m1','2015-09-23');
 INSERT INTO book_issue VALUES (NOW(),2235,'m1','2015-09-23');
 INSERT INTO book_issue VALUES (NOW(),3236,'m2','2015-09-23');
 INSERT INTO book_issue VALUES (NOW(),4237,'m2','2015-09-23');
 INSERT INTO book_issue VALUES (NOW(),5238,'m1','2015-09-23');
 INSERT INTO book_issue VALUES (NOW(),61239,'m1','2015-09-23');
+*/
+
+/*Inserting by trigger in book_issue*/
+INSERT INTO book_issue (accession_no,member_id) VALUES (61239,'m1');
+INSERT INTO book_issue (accession_no,member_id) VALUES (2235,'m1');
+INSERT INTO book_issue (accession_no,member_id) VALUES (3236,'m2');
+INSERT INTO book_issue (accession_no,member_id) VALUES (4237,'m2');
+INSERT INTO book_issue (accession_no,member_id) VALUES (5238,'m1');
+
 
 /*Inserting values in table subjects*/
 INSERT INTO subjects VALUES ('101','JAVA');
@@ -90,3 +101,4 @@ INSERT INTO titles SELECT * FROM tempTitle;
 /*Delete those rows of Titles table belonging to Publisher with publisher_id = '201'
  */
 DELETE FROM titles WHERE publisher_id='201';
+
