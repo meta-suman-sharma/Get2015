@@ -2,18 +2,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Scanner;
 
-import pojoClasses.Author;
 import pojoClasses.BookIssue;
 import pojoClasses.Books;
-import pojoClasses.Titles;
 import connection.ConnectionUtil;
 
 public class Assignment2 {
-	
+
 	static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
@@ -21,7 +17,7 @@ public class Assignment2 {
 		System.out.println("Enter Book name and member id to issue book : ");
 		String titleName = scanner.nextLine();
 		String memberId = scanner.nextLine();
-		
+
 		executeQueryUsingPreparedStatement(titleName, memberId);
 		System.out.println("\nExiting . . .");
 	}
@@ -56,21 +52,32 @@ public class Assignment2 {
 					+ titleName + "'";
 			ps2 = con.prepareStatement(query2);
 			rs1 = ps2.executeQuery(query2);
-			rs1.next();
-			bookIssue.setAccessionNo(rs1.getInt(1));
-			
-			System.out.println(bookIssue.getAccessionNo());
+			if (rs1.next())
+				bookIssue.setAccessionNo(rs1.getInt(1));
+			else {
+				System.out.println("Accession No not Exist for book "
+						+ titleName);
+				return;
+			}
 
-			String query3 = "SELECT status FROM books WHERE accession_no="+bookIssue.getAccessionNo()+";";
+			String query3 = "SELECT status FROM books WHERE accession_no="
+					+ bookIssue.getAccessionNo() + ";";
 			ps3 = con.prepareStatement(query3);
 			rs2 = ps3.executeQuery(query3);
-			rs2.next();
-			books.setStatus(rs2.getString(1));
-			
-			System.out.println(row);
-			System.out.println(books.getStatus());
 
-			if (row && books.getStatus().equals("NOT ISSUED")) {
+			if (rs2.next())
+				books.setStatus(rs2.getString(1));
+			else {
+				System.out.println("Book " + titleName + " not available");
+				return;
+			}
+		
+			if (!row) {
+				System.out.println("Member not Exist");
+				return;
+			}
+
+			if (books.getStatus().equals("NOT ISSUED")) {
 
 				String mainQuery = "INSERT INTO book_issue(accession_no,member_id) "
 						+ "VALUES ("
@@ -81,7 +88,8 @@ public class Assignment2 {
 				ps1 = con.prepareStatement(mainQuery);
 				flag = ps1.executeUpdate();
 
-				String query4 = "UPDATE books SET status='ISSUED' WHERE books.accession_no ="+bookIssue.getAccessionNo()+";";
+				String query4 = "UPDATE books SET status='ISSUED' WHERE books.accession_no ="
+						+ bookIssue.getAccessionNo() + ";";
 				ps2 = con.prepareStatement(query4);
 				ps2.executeUpdate();
 
@@ -91,8 +99,7 @@ public class Assignment2 {
 					System.out.println("Book for title " + titleName
 							+ " not availabe");
 			} else
-				System.out
-						.println("Either member not Exist or books already issued by someone else");
+				System.out.println("Books already issued to someone else");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
