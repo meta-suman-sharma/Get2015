@@ -2,11 +2,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Scanner;
-
-import pojoClasses.Author;
-import pojoClasses.Titles;
 import connection.ConnectionUtil;
 
 public class Assignment3 {
@@ -21,7 +16,8 @@ public class Assignment3 {
 	/* execute query using statement */
 	public static void executeQueryUsingStatement() {
 
-		String query = "DELETE from books WHERE accession_no IN (SELECT accession_no FROM book_issue WHERE (DATEDIFF(issue_date,NOW()))>=360);";
+		String query = "DELETE from b Using books AS b WHERE b.accession_no IN (SELECT accession_no FROM book_issue WHERE ((DATEDIFF(NOW(),issue_date))>=360)) "
+				+ "OR  NOT EXISTS(SELECT bi.issue_date FROM Book_Issue bi WHERE bi.accession_no=b.accession_no ORDER BY bi.issue_date);;";
 
 		Connection con = null;
 		ResultSet rs = null;
@@ -54,8 +50,6 @@ public class Assignment3 {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 		}
-
 	}
 }
