@@ -52,14 +52,16 @@ public class Assignment2 {
 					+ titleName + "'";
 			ps2 = con.prepareStatement(query2);
 			rs1 = ps2.executeQuery(query2);
-			if (rs1.next())
+			if (rs1.next()){
+				System.out.println("accession n0 " +rs1.getInt(1));
 				bookIssue.setAccessionNo(rs1.getInt(1));
+			}
 			else {
 				System.out.println("Accession No not Exist for book "
 						+ titleName);
 				return;
 			}
-
+			
 			String query3 = "SELECT status FROM books WHERE accession_no="
 					+ bookIssue.getAccessionNo() + ";";
 			ps3 = con.prepareStatement(query3);
@@ -71,7 +73,6 @@ public class Assignment2 {
 				System.out.println("Book " + titleName + " not available");
 				return;
 			}
-		
 			if (!row) {
 				System.out.println("Member not Exist");
 				return;
@@ -81,7 +82,7 @@ public class Assignment2 {
 
 				String mainQuery = "INSERT INTO book_issue(accession_no,member_id) "
 						+ "VALUES ("
-						+ books.getAccessionNo()
+						+bookIssue.getAccessionNo()
 						+ ",'"
 						+ memberId
 						+ "');";
@@ -120,9 +121,6 @@ public class Assignment2 {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 		}
-
 	}
-
 }
