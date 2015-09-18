@@ -47,13 +47,17 @@ public class Assignment2 {
 					+ "';";
 			ps1 = con.prepareStatement(query1);
 			boolean row = ps1.execute(query1);
+			
+			if (!row) {
+				System.out.println("Member not Exist");
+				return;
+			}
 
 			String query2 = "SELECT b.accession_no FROM books b INNER JOIN titles t ON t.title_id=b.title_id WHERE t.title_name='"
 					+ titleName + "'";
 			ps2 = con.prepareStatement(query2);
 			rs1 = ps2.executeQuery(query2);
 			if (rs1.next()){
-				System.out.println("accession n0 " +rs1.getInt(1));
 				bookIssue.setAccessionNo(rs1.getInt(1));
 			}
 			else {
@@ -61,7 +65,7 @@ public class Assignment2 {
 						+ titleName);
 				return;
 			}
-			
+
 			String query3 = "SELECT status FROM books WHERE accession_no="
 					+ bookIssue.getAccessionNo() + ";";
 			ps3 = con.prepareStatement(query3);
@@ -73,11 +77,7 @@ public class Assignment2 {
 				System.out.println("Book " + titleName + " not available");
 				return;
 			}
-			if (!row) {
-				System.out.println("Member not Exist");
-				return;
-			}
-
+		
 			if (books.getStatus().equals("NOT ISSUED")) {
 
 				String mainQuery = "INSERT INTO book_issue(accession_no,member_id) "
