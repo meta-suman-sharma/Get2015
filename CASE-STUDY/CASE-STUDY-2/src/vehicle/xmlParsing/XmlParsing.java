@@ -21,12 +21,6 @@ import vehicle.pojoClasses.Car;
 import vehicle.pojoClasses.Vehicle;
 
 public class XmlParsing {
-	/*
-	 * static final String DATE = "date"; static final String ITEM = "item";
-	 * static final String MODE = "mode"; static final String UNIT = "unit";
-	 * static final String CURRENT = "current"; static final String INTERACTIVE
-	 * = "interactive";
-	 */
 
 	static final String vehicleDetail = "vehicleDetail";
 	static final String type = "type";
@@ -65,7 +59,6 @@ public class XmlParsing {
 			while (eventReader.hasNext()) {
 				XMLEvent event = eventReader.nextEvent();
 
-				// System.out.println(event);
 				if (event.isStartElement()) {
 					StartElement startElement = event.asStartElement();
 
@@ -97,7 +90,6 @@ public class XmlParsing {
 							event = eventReader.nextEvent();
 
 							vehicle.setID(event.asCharacters().getData());
-							// System.out.println(vehicle.getID());
 							continue;
 						}
 					}
@@ -106,7 +98,6 @@ public class XmlParsing {
 							.equals(createdBy)) {
 						event = eventReader.nextEvent();
 						vehicle.setCreatedBy(event.asCharacters().getData());
-						// System.out.println(vehicle.getCreatedBy());
 						continue;
 					}
 
@@ -114,7 +105,6 @@ public class XmlParsing {
 							.equals(createdTime)) {
 						event = eventReader.nextEvent();
 						vehicle.setCreatedTime(event.asCharacters().getData());
-						// System.out.println(vehicle.getCreatedTime());
 						continue;
 					}
 
@@ -122,14 +112,12 @@ public class XmlParsing {
 							.equals(make)) {
 						event = eventReader.nextEvent();
 						vehicle.setMake(event.asCharacters().getData());
-						// System.out.println(vehicle.getMake());
 						continue;
 					}
 					if (event.asStartElement().getName().getLocalPart()
 							.equals(model)) {
 						event = eventReader.nextEvent();
 						vehicle.setModel(event.asCharacters().getData());
-						// System.out.println(vehicle.getModel());
 						continue;
 					}
 
@@ -138,7 +126,6 @@ public class XmlParsing {
 						event = eventReader.nextEvent();
 						vehicle.setEngineInCC(Integer.parseInt(event
 								.asCharacters().getData()));
-						// System.out.println(vehicle.getEngineInCC());
 						continue;
 					}
 
@@ -147,7 +134,6 @@ public class XmlParsing {
 						event = eventReader.nextEvent();
 						vehicle.setFuelCapacity(Integer.parseInt(event
 								.asCharacters().getData()));
-						// System.out.println(vehicle.getFuelCapacity());
 						continue;
 					}
 
@@ -156,7 +142,6 @@ public class XmlParsing {
 						event = eventReader.nextEvent();
 						vehicle.setMilage(Integer.parseInt(event.asCharacters()
 								.getData()));
-						// System.out.println(vehicle.getMilage());
 						continue;
 					}
 
@@ -165,7 +150,6 @@ public class XmlParsing {
 						event = eventReader.nextEvent();
 						vehicle.setPrice(Integer.parseInt(event.asCharacters()
 								.getData()));
-						// System.out.println(vehicle.getPrice());
 						continue;
 					}
 
@@ -174,7 +158,6 @@ public class XmlParsing {
 						event = eventReader.nextEvent();
 						vehicle.setRoadtax(Integer.parseInt(event
 								.asCharacters().getData()));
-						// System.out.println(vehicle.getRoadtax());
 						continue;
 					}
 
@@ -182,7 +165,6 @@ public class XmlParsing {
 							.equals(AC)) {
 						event = eventReader.nextEvent();
 						((Car) vehicle).setAC(event.asCharacters().getData());
-						// System.out.println(((Car) vehicle).getAC());
 						continue;
 					}
 
@@ -191,8 +173,6 @@ public class XmlParsing {
 						event = eventReader.nextEvent();
 						((Car) vehicle).setPowerSteering(event.asCharacters()
 								.getData());
-						// System.out.println(((Car)
-						// vehicle).getPowerSteering());
 						continue;
 					}
 
@@ -201,7 +181,6 @@ public class XmlParsing {
 						event = eventReader.nextEvent();
 						((Bike) vehicle).setSelfStart(event.asCharacters()
 								.getData());
-						// System.out.println(((Bike) vehicle).getSelfStart());
 						continue;
 					}
 
@@ -210,8 +189,6 @@ public class XmlParsing {
 						event = eventReader.nextEvent();
 						((Bike) vehicle).setHelmetPrice(Integer.parseInt(event
 								.asCharacters().getData()));
-						// System.out.println(((Bike)
-						// vehicle).getHelmetPrice());
 						continue;
 					}
 				}
