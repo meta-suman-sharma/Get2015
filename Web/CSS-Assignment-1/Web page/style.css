@@ -26,7 +26,12 @@ body{
 .header center h4{
 	margin-top:0px;
 }
-
+.contentSearch {
+	margin-top:10px;
+	float:right;
+	color:gray;
+	position:absolute;
+}
 .nav{
 	margin-top:80px;
 	height:30px;
@@ -35,26 +40,32 @@ body{
 	position:absolute;	
 }
 .nav ul {
-      margin-top:5.5px;
-      list-style:none; 
+      margin-top:5.8px;
+	  margin-bottom:0px;
+      list-style:none;  
 }
 .nav ul li {
-
 	display:inline;
-	border:2px solid LightSlateGray ;
-	background-color:LightSlateGray ;
-	border-radius:4px;
-	margin:0 20px;
+	height:100%;
+    padding:0px 10px;	
 }
 .nav ul li a {
-	hover:blue;
 	color:black;
 	text-decoration:none;
+	padding:7px;
 }
 
+.nav ul li :hover {
+	color: #FFF;
+	background-color:LightSlateGray ;
+	border-radius:4px;
+	
+}
+
+/*
 .nav ul li a:hover { 
     color:WhiteSmoke ;
-}
+}*/
 #container
 {
 	width: auto;
@@ -104,6 +115,24 @@ body{
 	text-decoration:none;
 }
 
+.left ul li:hover {
+	color: #FFF;
+	background-color:LightSlateGray ;
+	border-radius:4px;
+}
+
+.search{
+	margin:25px 20px 10px 0px;
+	border-radius:20px;
+	border:1px solid WhiteSmoke;
+	background-color:WhiteSmoke;
+	height:200px;
+	width:350px;
+	float:left;
+	left:25px;
+	position:absolute;
+	text-align:center;
+}
 
 .right{
 	margin-left:1140px;
@@ -154,3 +183,4 @@ clear: both;
 .footer p{
 	text-align:center;
 }
+
